@@ -1,0 +1,42 @@
+22-Sep-2015 21:30:04.608 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version:        Apache Tomcat/8.0.26
+22-Sep-2015 21:30:04.626 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Aug 18 2015 11:38:37 UTC
+22-Sep-2015 21:30:04.626 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server number:         8.0.26.0
+22-Sep-2015 21:30:04.626 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 10
+22-Sep-2015 21:30:04.627 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.0
+22-Sep-2015 21:30:04.627 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+22-Sep-2015 21:30:04.627 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             C:\Program Files\Java\jre1.8.0_60
+22-Sep-2015 21:30:04.628 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           1.8.0_60-b27
+22-Sep-2015 21:30:04.628 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+22-Sep-2015 21:30:04.628 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         C:\Users\Christian\Documents\GitHub\SecureSoftwareFuzzer\apache-tomcat-8.0.26
+22-Sep-2015 21:30:04.629 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         C:\Users\Christian\Documents\GitHub\SecureSoftwareFuzzer\apache-tomcat-8.0.26
+22-Sep-2015 21:30:04.629 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=C:\Users\Christian\Documents\GitHub\SecureSoftwareFuzzer\apache-tomcat-8.0.26\conf\logging.properties
+22-Sep-2015 21:30:04.630 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+22-Sep-2015 21:30:04.631 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.endorsed.dirs=C:\Users\Christian\Documents\GitHub\SecureSoftwareFuzzer\apache-tomcat-8.0.26\endorsed
+22-Sep-2015 21:30:04.631 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=C:\Users\Christian\Documents\GitHub\SecureSoftwareFuzzer\apache-tomcat-8.0.26
+22-Sep-2015 21:30:04.632 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=C:\Users\Christian\Documents\GitHub\SecureSoftwareFuzzer\apache-tomcat-8.0.26
+22-Sep-2015 21:30:04.633 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=C:\Users\Christian\Documents\GitHub\SecureSoftwareFuzzer\apache-tomcat-8.0.26\temp
+22-Sep-2015 21:30:04.634 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Loaded APR based Apache Tomcat Native library 1.1.33 using APR version 1.5.1.
+22-Sep-2015 21:30:04.635 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+22-Sep-2015 21:30:05.507 INFO [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL successfully initialized (OpenSSL 1.0.1m 19 Mar 2015)
+22-Sep-2015 21:30:07.007 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-apr-8080"]
+22-Sep-2015 21:30:07.017 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["ajp-apr-8009"]
+22-Sep-2015 21:30:07.020 INFO [main] org.apache.catalina.startup.Catalina.load Initialization processed in 4164 ms
+22-Sep-2015 21:30:07.483 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service Catalina
+22-Sep-2015 21:30:07.483 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet Engine: Apache Tomcat/8.0.26
+22-Sep-2015 21:30:07.525 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory C:\Users\Christian\Documents\GitHub\SecureSoftwareFuzzer\apache-tomcat-8.0.26\webapps\bodgeit
+22-Sep-2015 21:30:08.462 INFO [localhost-startStop-1] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+22-Sep-2015 21:30:08.652 INFO [localhost-startStop-1] org.apache.catalina.util.SessionIdGeneratorBase.createSecureRandom Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [110] milliseconds.
+22-Sep-2015 21:30:10.125 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory C:\Users\Christian\Documents\GitHub\SecureSoftwareFuzzer\apache-tomcat-8.0.26\webapps\bodgeit has finished in 2,600 ms
+22-Sep-2015 21:30:10.126 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory C:\Users\Christian\Documents\GitHub\SecureSoftwareFuzzer\apache-tomcat-8.0.26\webapps\docs
+22-Sep-2015 21:30:10.191 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory C:\Users\Christian\Documents\GitHub\SecureSoftwareFuzzer\apache-tomcat-8.0.26\webapps\docs has finished in 66 ms
+22-Sep-2015 21:30:10.191 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory C:\Users\Christian\Documents\GitHub\SecureSoftwareFuzzer\apache-tomcat-8.0.26\webapps\examples
+22-Sep-2015 21:30:11.317 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory C:\Users\Christian\Documents\GitHub\SecureSoftwareFuzzer\apache-tomcat-8.0.26\webapps\examples has finished in 1,126 ms
+22-Sep-2015 21:30:11.318 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory C:\Users\Christian\Documents\GitHub\SecureSoftwareFuzzer\apache-tomcat-8.0.26\webapps\host-manager
+22-Sep-2015 21:30:11.373 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory C:\Users\Christian\Documents\GitHub\SecureSoftwareFuzzer\apache-tomcat-8.0.26\webapps\host-manager has finished in 55 ms
+22-Sep-2015 21:30:11.374 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory C:\Users\Christian\Documents\GitHub\SecureSoftwareFuzzer\apache-tomcat-8.0.26\webapps\manager
+22-Sep-2015 21:30:11.419 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory C:\Users\Christian\Documents\GitHub\SecureSoftwareFuzzer\apache-tomcat-8.0.26\webapps\manager has finished in 45 ms
+22-Sep-2015 21:30:11.420 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory C:\Users\Christian\Documents\GitHub\SecureSoftwareFuzzer\apache-tomcat-8.0.26\webapps\ROOT
+22-Sep-2015 21:30:11.465 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory C:\Users\Christian\Documents\GitHub\SecureSoftwareFuzzer\apache-tomcat-8.0.26\webapps\ROOT has finished in 46 ms
+22-Sep-2015 21:30:11.470 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-apr-8080"]
+22-Sep-2015 21:30:11.483 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["ajp-apr-8009"]
+22-Sep-2015 21:30:11.485 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in 4464 ms

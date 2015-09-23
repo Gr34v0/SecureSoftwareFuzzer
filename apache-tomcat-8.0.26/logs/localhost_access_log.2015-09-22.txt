@@ -1,0 +1,10 @@
+127.0.0.1 - - [22/Sep/2015:21:30:32 -0400] "GET /bodgeit/ HTTP/1.1" 200 3225
+127.0.0.1 - - [22/Sep/2015:21:30:32 -0400] "GET /bodgeit/js/util.js HTTP/1.1" 200 1812
+127.0.0.1 - - [22/Sep/2015:21:30:32 -0400] "GET /bodgeit/style.css HTTP/1.1" 200 475
+127.0.0.1 - - [22/Sep/2015:21:30:32 -0400] "GET /favicon.ico HTTP/1.1" 200 21630
+127.0.0.1 - - [22/Sep/2015:21:30:44 -0400] "GET /bodgeit HTTP/1.1" 302 -
+127.0.0.1 - - [22/Sep/2015:21:30:44 -0400] "GET /bodgeit/ HTTP/1.1" 200 3212
+127.0.0.1 - - [22/Sep/2015:21:30:44 -0400] "GET /bodgeit/js/util.js HTTP/1.1" 200 1812
+127.0.0.1 - - [22/Sep/2015:21:30:45 -0400] "GET /bodgeit/style.css HTTP/1.1" 200 475
+127.0.0.1 - - [22/Sep/2015:21:30:45 -0400] "GET /bodgeit/product.jsp?prodid=26 HTTP/1.1" 200 3343
+127.0.0.1 - - [22/Sep/2015:21:30:46 -0400] "POST /bodgeit/basket.jsp HTTP/1.1" 200 3281
