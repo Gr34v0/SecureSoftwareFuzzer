@@ -14,3 +14,14 @@
 127.0.0.1 - - [22/Sep/2015:21:40:11 -0400] "GET /bodgeit/style.css HTTP/1.1" 200 475
 127.0.0.1 - - [22/Sep/2015:21:40:11 -0400] "GET /bodgeit/product.jsp?prodid=26 HTTP/1.1" 200 3343
 127.0.0.1 - - [22/Sep/2015:21:40:11 -0400] "POST /bodgeit/basket.jsp HTTP/1.1" 200 3281
+127.0.0.1 - - [22/Sep/2015:22:18:24 -0400] "GET /bodgeit/ HTTP/1.1" 200 3237
+127.0.0.1 - - [22/Sep/2015:22:18:25 -0400] "GET /bodgeit/style.css HTTP/1.1" 200 475
+127.0.0.1 - - [22/Sep/2015:22:18:25 -0400] "GET /bodgeit/js/util.js HTTP/1.1" 304 -
+127.0.0.1 - - [22/Sep/2015:22:18:27 -0400] "GET /bodgeit/product.jsp?prodid=26 HTTP/1.1" 200 3323
+127.0.0.1 - - [22/Sep/2015:22:18:27 -0400] "GET /bodgeit/images/130.png HTTP/1.1" 200 343
+127.0.0.1 - - [22/Sep/2015:22:18:27 -0400] "GET /bodgeit/images/129.png HTTP/1.1" 200 434
+127.0.0.1 - - [22/Sep/2015:22:18:32 -0400] "GET /bodgeit/home.jsp HTTP/1.1" 200 3231
+127.0.0.1 - - [22/Sep/2015:22:18:34 -0400] "GET /bodgeit/login.jsp HTTP/1.1" 200 2470
+127.0.0.1 - - [22/Sep/2015:22:18:37 -0400] "GET /bodgeit/register.jsp HTTP/1.1" 200 2493
+127.0.0.1 - - [22/Sep/2015:22:18:41 -0400] "GET /bodgeit/login.jsp HTTP/1.1" 200 2470
+127.0.0.1 - - [22/Sep/2015:22:18:46 -0400] "POST /bodgeit/login.jsp HTTP/1.1" 200 2538
