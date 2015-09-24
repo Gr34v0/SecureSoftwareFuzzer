@@ -1,5 +1,8 @@
 package fuzzer;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -12,7 +15,7 @@ public class Fuzzer {
 	
 	static ArrayList<String> commands;
 
-	public static void main(String[] args) throws FailingHttpStatusCodeException, MalformedURLException, IOException {
+	public static void main(String[] args) throws FailingHttpStatusCodeException, MalformedURLException, IOException, AWTException {
 		WebClient webClient = new WebClient();
 		webClient.setJavaScriptEnabled(true);
 		
@@ -23,8 +26,9 @@ public class Fuzzer {
 		
 		//for(String arg:args){}
 		
-		discoverLinks(webClient);
-		guessLinks(webClient);
+		//discoverLinks(webClient);
+		//guessLinks(webClient);
+		auth(webClient);
 		
 		webClient.closeAllWindows();
 
@@ -64,15 +68,42 @@ public class Fuzzer {
 		//TODO
 	}
 	
-	public static void auth(){
-		//TODO
+	public static void auth(WebClient webClient) throws FailingHttpStatusCodeException, MalformedURLException, IOException, AWTException{ //assume bodgeit
+		
+		HtmlPage loginpage = webClient.getPage("http://localhost:8080/bodgeit/login.jsp");
+		
+		List<HtmlAnchor> loginList = loginpage.getAnchors();
+		
+		for(HtmlAnchor each : loginList){
+			if(each.getHrefAttribute().contains("prodid") || each.getHrefAttribute().contains("typeid")){}
+			else{
+				System.out.println(each.asText());
+			}
+		}
+		
+		List<HtmlForm> forms = loginpage.getForms();
+		
+		for(HtmlForm form : forms){
+			System.out.println(form.asText());
+			form.setAttribute("username", "user@example.com");
+			form.setAttribute("password", "password");
+			
+			Robot clicker = new Robot();
+			clicker.keyPress(KeyEvent.VK_ENTER);
+			
+		}
+		
+		List<HtmlForm> forms2 = loginpage.getForms();
+		
+		for(HtmlForm form:forms2){
+			System.out.println(form.asText());
+						
+		}	
 	}
 	
-	public static void help(){
+	static void help(){
 		System.out.println("Commands: ");
 		for(String command:commands){
-				System.out.println(command);	 }
-				
+				System.out.println(command);	 }			
 	}
-
 }
