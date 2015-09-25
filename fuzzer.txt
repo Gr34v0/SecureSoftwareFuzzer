@@ -1,0 +1,35 @@
+Use python - one file scripting type
+
+libraries:
+	- Requests package -External library
+		- Getting the website files
+		- Passes auth params
+		- Login/logout
+		- Saves the session
+		- etc
+	- Beautiful Soup parses HTML -External library
+	- argparse - cmd args -External
+
+Store links as a set, and add new links to it when crawling through the site.
+
+Test against DVWA first. More clear for login. - Make sure to stay on the page, don't crawl to external links.
+	-Login page: passes username, password and a number 1 in hidden feild for the login
+	-key "login" will have a hidden 1 for POST request.
+
+**FOLLOW REDIRECTS**
+
+use common words file for guessing. make it, new line separated
+index
+home
+login
+user
+admin
+password
+etc, like existing URLs
+
+Commandline arguments:
+	argparse -> part of python std library "I want this thing afer this dash" Very well documented
+
+Link discovery -> Recursive, base case is when you hit a page with no link that haven't been visited.
+
+input discover-> Print out cookies (requests), HTML of form (input tag + name of input)
