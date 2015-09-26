@@ -26,9 +26,10 @@ public class Fuzzer {
 		
 		//for(String arg:args){}
 		
-		//discoverLinks(webClient);
-		//guessLinks(webClient);
 		auth(webClient);
+		discoverLinks(webClient);
+		guessLinks(webClient);
+		
 		
 		webClient.closeAllWindows();
 
@@ -36,7 +37,7 @@ public class Fuzzer {
 	
 	public static List<HtmlAnchor> discoverLinks(WebClient webClient) throws IOException, MalformedURLException{
 		
-		HtmlPage defaultpage = webClient.getPage("http://localhost:8080/bodgeit");
+		HtmlPage defaultpage = webClient.getPage("http://localhost:8080/bodgeit"); 
 		
 		List<HtmlAnchor> links = defaultpage.getAnchors();
 		for(HtmlAnchor link : links){
@@ -93,7 +94,12 @@ public class Fuzzer {
 			
 		}
 		
+		//HtmlPage postloginpage = webClient.getPage("http://localhost:8080/bodgeit/login.jsp");
+		
 		List<HtmlForm> forms2 = loginpage.getForms();
+		
+		
+		loginpage.refresh();
 		
 		for(HtmlForm form:forms2){
 			System.out.println(form.asText());
