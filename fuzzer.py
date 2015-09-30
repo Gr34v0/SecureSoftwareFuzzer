@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import argparse
 import time
+import re
 
 parser = argparse.ArgumentParser(description="Fuzzer for websites, specifically BodgeIt and DVWA")
 parser.add_argument("-discover", help="Output a comprehensive, human-readable list of all discovered inputs to the system. Techniques include both crawling and guessing.")
@@ -18,12 +19,18 @@ args = parser.parse_args()
 visitSite = None
 global linkSet
 linkSet = []
+
 global cookieBasket
 cookieBasket = [] #Sam (my roommate) had this idea
+
 global formSet
 formSet = []
+
 global guessedLinkSet
 guessedLinkSet = []
+
+global urlParameterSet
+urlParameterSet = []
 
 global commonSuffixFile
 commonSuffixFile = open("commonsuffix").read()
@@ -45,11 +52,15 @@ def discover(baseURL):
 
     print("------------<Guessing...>------------ \n")
     pageGuess(baseURL)
+    for link in guessedLinkSet:
+        print(guessedLinkSet)
+        print(link.url)
 
     print("------------<Traversing Links...>------------ \n")
     linkTraverse(url, linkSet, baseURL)
     for link in guessedLinkSet:
-        linkTraverse(url, guessedLinkSet, baseURL)
+        linkSet.append(link)
+        linkTraverse(link, guessedLinkSet, baseURL)
 
     print("------------<Links found>------------ \n")
     for each in linkSet:
@@ -64,6 +75,8 @@ def discover(baseURL):
         print(form)
 
     print("------------<URL Parameters found>------------ \n")
+    for param in urlParameterSet:
+        print(param)
 
     print("------------</Input Discovery>------------")
 
@@ -81,6 +94,7 @@ def linkTraverse(req, linkSet, baseURL):
 
     scrapeCookies(req)
     scrapeForm(soup)
+    scrapeParams(req)
 
     #randomNumb = 0
 
@@ -91,6 +105,7 @@ def linkTraverse(req, linkSet, baseURL):
             linkSet.append(linka)
             #print(baseURL.url + link.get('href'))
             linkTraverse(session.get(baseURL + linka.get('href')), linkSet, baseURL)
+
 
 def scrapeCookies(url):
     cookieList = url.cookies
@@ -108,8 +123,18 @@ def scrapeForm(soup):
             formSet.append(form.get("name"))
 
 
-def scrapeParams(soup):
-    pass
+def scrapeParams(req):
+
+    url = req.url
+
+    #Test URL for testing regex
+    #url = "http://localhost:8080/bodgeit/home.jsp?stuff=34&More=43&mas=4"
+
+    params = re.findall('(\?|&)(\w*)', url)
+
+    for param in params:
+        if param and param not in urlParameterSet:
+            urlParameterSet.append(param)
 
 
 def pageGuess(baseURL):
@@ -124,13 +149,15 @@ def pageGuess(baseURL):
         if test.status_code != 404:
             guessedLinkSet.append(test)
 
+    return guessedLinkSet
+
 
 def authenticate(site):
 
     if site == "dvwa":
-        #rootSite = requests.post("http://localhost:8080/dvwa", data={"username":"user@example.com", "password": "password"})
-        #print(rootSite.content)
-        #return rootSite
+        rootSite = requests.post("http://localhost:8080/dvwa", data={"username":"user@example.com", "password": "password"})
+        #print(BeautifulSoup(rootSite.content)).prettify()
+        return rootSite
         pass
     elif site == "bodgeit":
         rootSite = session.post("http://localhost:8080/bodgeit/login.jsp", data={"username":"test@thebodgeitstore.com", "password": "password"})
@@ -140,7 +167,7 @@ def authenticate(site):
         print("Unrecognized or Defaulted")
 
 
-if not args.discover or not args.test:
+if not args.discover and not args.test:
 	print("Must have either discover or test")
 
 if args.slow:
