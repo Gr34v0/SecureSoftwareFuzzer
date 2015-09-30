@@ -13,7 +13,7 @@ libraries:
 Store links as a set, and add new links to it when crawling through the site.
 
 Test against DVWA first. More clear for login. - Make sure to stay on the page, don't crawl to external links.
-	-Login page: passes username, password and a number 1 in hidden feild for the login
+	-Login page: passes username, password and a number 1 in hidden field for the login
 	-key "login" will have a hidden 1 for POST request.
 
 **FOLLOW REDIRECTS**
@@ -25,6 +25,4 @@ input discover-> Print out cookies (requests), HTML of form (input tag + name of
 
 Find every alphanumeric after ? or & and before = in the URLs (prodid, typeid, etc) and print it
 
-Go through every page and print put all unique cookies into a set and print
-
-if page has a form, print all field params
+r'(\?|&)(\w*)=(\w*)

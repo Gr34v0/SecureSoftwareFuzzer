@@ -22,7 +22,12 @@ global cookieBasket
 cookieBasket = [] #Sam (my roommate) had this idea
 global formSet
 formSet = []
+global guessedLinkSet
+guessedLinkSet = []
 
+global commonSuffixFile
+commonSuffixFile = open("commonsuffix").read()
+global commonWordFile
 commonWordFile = open("commonwords").read()
 #rootSite = None
 
@@ -34,24 +39,33 @@ slowTime = 500 #ms
 start = time.time()
 
 def discover(baseURL):
+    print("------------<Input Discovery>-------------- \n")
     url = session.get(baseURL)
     linkSet = [baseURL]
-    linkTraverse(url, linkSet, baseURL)
 
-    print("------------<Links>------------ \n")
+    print("------------<Guessing...>------------ \n")
+    pageGuess(baseURL)
+
+    print("------------<Traversing Links...>------------ \n")
+    linkTraverse(url, linkSet, baseURL)
+    for link in guessedLinkSet:
+        linkTraverse(url, guessedLinkSet, baseURL)
+
+    print("------------<Links found>------------ \n")
     for each in linkSet:
         print(str(each) + ' \n')
-    print("-----------</Links>------------ \n\n")
 
-    print("------------<Cookies>------------\n")
+    print("------------<Cookies found>------------\n")
     for cookie in cookieBasket:
         print(str(cookie))
-    print("------------</Cookies>------------ \n")
 
-    print("------------<Forms>------------\n")
+    print("------------<Forms found>------------\n")
     for form in formSet:
         print(form)
-    print("------------</Forms>------------\n")
+
+    print("------------<URL Parameters found>------------ \n")
+
+    print("------------</Input Discovery>------------")
 
 
 def linkTraverse(req, linkSet, baseURL):
@@ -98,8 +112,18 @@ def scrapeParams(soup):
     pass
 
 
-def pageGuess(someargs):
-    pass
+def pageGuess(baseURL):
+
+    words = commonWordFile.split('\n')
+    suffixes = commonSuffixFile.split('\n')
+
+    for word in words:
+        for suffix in suffixes:
+            test = session.get(baseURL + word + "." + suffix)
+
+        if test.status_code != 404:
+            guessedLinkSet.append(test)
+
 
 def authenticate(site):
 
