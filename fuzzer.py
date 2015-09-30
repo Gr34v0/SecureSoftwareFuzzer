@@ -21,13 +21,14 @@ visitSite = None
 linkSet = []
 commonWordFile = open("commonwords").read()
 rootSite = None
+session = requests.Session()
 
 slowTime = 500 #ms
 
 start = time.time()
 
 def discover(baseURL):
-    url = requests.get(baseURL)
+    url = session.get(baseURL)
     linkSet = [baseURL]
 
     linkTraverse(url, linkSet, baseURL)
@@ -69,11 +70,15 @@ def authenticate(site):
         #return rootSite
         pass
     elif site == "bodgeit":
-        rootSite = requests.post("http://localhost:8080/bodgeit/login.jsp", data={"username":"user@example.com", "password": "password"})
+        rootSite = session.post("http://localhost:8080/bodgeit/login.jsp", data={"username":"user@example.com", "password": "password"})
         print(BeautifulSoup(rootSite.content).prettify())
         return rootSite
     else:
         print("Unrecognized or Defaulted")
+
+
+if not args.discover or not args.test:
+	print("Must have either discover or test")
 
 if args.slow:
     slowTime = int(args.slow)
@@ -90,14 +95,6 @@ if args.custom_auth and args.discover:
         linkTraverse(site, linkSet, site.url)
     else:
         authenticate("Not Recognized, or Default")
-elif args.custom_auth:
-    if args.custom_auth == "dvwa":
-        site = authenticate("dvwa")
-    elif args.custom_auth == "bodgeit":
-        site = authenticate("bodgeit")
-    else:
-        authenticate("Not Recognized, or Default")
-
 
 if args.discover:
     discover(args.discover)
