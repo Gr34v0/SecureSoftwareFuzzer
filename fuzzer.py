@@ -1,5 +1,3 @@
-#Start
-
 import requests
 from bs4 import BeautifulSoup
 import argparse
@@ -18,9 +16,17 @@ parser.add_argument("--slow", help="Number of milliseconds considered when a res
 args = parser.parse_args()
 
 visitSite = None
+global linkSet
 linkSet = []
+global cookieBasket
+cookieBasket = [] #Sam (my roommate) had this idea
+global formSet
+formSet = []
+
 commonWordFile = open("commonwords").read()
-rootSite = None
+#rootSite = None
+
+global session
 session = requests.Session()
 
 slowTime = 500 #ms
@@ -30,17 +36,28 @@ start = time.time()
 def discover(baseURL):
     url = session.get(baseURL)
     linkSet = [baseURL]
-
     linkTraverse(url, linkSet, baseURL)
 
+    print("------------<Links>------------ \n")
     for each in linkSet:
-        print(str(each) + ' /n')
+        print(str(each) + ' \n')
+    print("-----------</Links>------------ \n\n")
+
+    print("------------<Cookies>------------\n")
+    for cookie in cookieBasket:
+        print(str(cookie))
+    print("------------</Cookies>------------ \n")
+
+    print("------------<Forms>------------\n")
+    for form in formSet:
+        print(form)
+    print("------------</Forms>------------\n")
 
 
 def linkTraverse(req, linkSet, baseURL):
     """ This crawls through the website and scrapes all unique onsite links into the the linkSet
 
-    :param req: Website from the requests.get() command
+    :param req: Website from the session.get() command
     :param linkSet: The set of all unique links
     :param baseURL: The base URL of the site - because reasons
     :return: None
@@ -48,15 +65,37 @@ def linkTraverse(req, linkSet, baseURL):
 
     soup = BeautifulSoup(req.content)
 
-    randomNumb = 0
+    scrapeCookies(req)
+    scrapeForm(soup)
+
+    #randomNumb = 0
 
     links = soup.find_all('a')
 
-    for link in links:
-        if link not in linkSet:
-            linkSet.append(link)
+    for linka in links:
+        if linka not in linkSet:
+            linkSet.append(linka)
             #print(baseURL.url + link.get('href'))
-            linkTraverse(requests.get(baseURL + link.get('href')), linkSet, baseURL)
+            linkTraverse(session.get(baseURL + linka.get('href')), linkSet, baseURL)
+
+def scrapeCookies(url):
+    cookieList = url.cookies
+
+    for cookie in cookieList:
+        if cookie not in cookieBasket:
+            cookieBasket.append(cookie)
+
+def scrapeForm(soup):
+
+    formList = soup.find_all('input')
+
+    for form in formList:
+        if form.get("name") not in formSet:
+            formSet.append(form.get("name"))
+
+
+def scrapeParams(soup):
+    pass
 
 
 def pageGuess(someargs):
@@ -70,8 +109,8 @@ def authenticate(site):
         #return rootSite
         pass
     elif site == "bodgeit":
-        rootSite = session.post("http://localhost:8080/bodgeit/login.jsp", data={"username":"user@example.com", "password": "password"})
-        print(BeautifulSoup(rootSite.content).prettify())
+        rootSite = session.post("http://localhost:8080/bodgeit/login.jsp", data={"username":"test@thebodgeitstore.com", "password": "password"})
+        #print(BeautifulSoup(rootSite.content).prettify())
         return rootSite
     else:
         print("Unrecognized or Defaulted")
