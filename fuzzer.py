@@ -6,12 +6,12 @@ import re
 
 parser = argparse.ArgumentParser(description="Fuzzer for websites, specifically BodgeIt and DVWA")
 parser.add_argument("-discover", help="Output a comprehensive, human-readable list of all discovered inputs to the system. Techniques include both crawling and guessing.")
-parser.add_argument("-test", help="Discover all inputs, then attempt a list of exploit vectors on those inputs. Report potential vulnerabilities.")
+#parser.add_argument("-test", help="Discover all inputs, then attempt a list of exploit vectors on those inputs. Report potential vulnerabilities.")
 parser.add_argument("--custom-auth", help="Signal that the fuzzer should use hard-coded authentication for a specific application (e.g. dvwa).")
 parser.add_argument("--common-words", help="Newline-delimited file of common words to be used in page guessing and input guessing.")
-parser.add_argument("--vectors-file", help="Newline-delimited file of common exploits to vulnerabilities.")
-parser.add_argument("--sensitive-file", help="Newline-delimited file data that should never be leaked. It's assumed that this data is in the application's database (e.g. test data), but is not reported in any response.")
-parser.add_argument("--random", help="When off, try each input to each page systematically.  When on, choose a random page, then a random input field and test all vectors. Default: false.")
+#parser.add_argument("--vectors-file", help="Newline-delimited file of common exploits to vulnerabilities.")
+#parser.add_argument("--sensitive-file", help="Newline-delimited file data that should never be leaked. It's assumed that this data is in the application's database (e.g. test data), but is not reported in any response.")
+#parser.add_argument("--random", help="When off, try each input to each page systematically.  When on, choose a random page, then a random input field and test all vectors. Default: false.")
 parser.add_argument("--slow", help="Number of milliseconds considered when a response is considered 'slow'. Default is 500 milliseconds")
 
 args = parser.parse_args()
@@ -28,6 +28,9 @@ formSet = []
 
 global guessedLinkSet
 guessedLinkSet = []
+
+global guessedLinkTraverseSet
+guessedLinkTraverseSet = []
 
 global urlParameterSet
 urlParameterSet = []
@@ -52,15 +55,14 @@ def discover(baseURL):
 
     print("------------<Guessing...>------------ \n")
     pageGuess(baseURL)
-    for link in guessedLinkSet:
-        print(guessedLinkSet)
-        print(link.url)
 
     print("------------<Traversing Links...>------------ \n")
     linkTraverse(url, linkSet, baseURL)
+    i = 0
     for link in guessedLinkSet:
         linkSet.append(link)
-        linkTraverse(link, guessedLinkSet, baseURL)
+        linkTraverse(session.get(baseURL + guessedLinkTraverseSet[i]), linkSet, baseURL)
+        i += 1
 
     print("------------<Links found>------------ \n")
     for each in linkSet:
@@ -107,6 +109,33 @@ def linkTraverse(req, linkSet, baseURL):
             linkTraverse(session.get(baseURL + linka.get('href')), linkSet, baseURL)
 
 
+def pageGuess(baseURL):
+
+    words = commonWordFile.split('\n')
+    suffixes = commonSuffixFile.split('\n')
+
+    for word in words:
+        for suffix in suffixes:
+            test = session.get(baseURL + word + "." + suffix)
+            if test.status_code != 404:
+
+                #txt='http://localhost:8080/bodgeit/admin.jsp'
+
+                re1='.*?'
+                re2='((?:[a-z][a-z\\.\\d\\-]+)\\.(?:[a-z][a-z\\-]+))(?![\\w\\.])'
+
+                rg = re.compile(re1+re2,re.IGNORECASE|re.DOTALL)
+                m = rg.search(test.url)
+                if m:
+                    fqdn1 = m.group(1)
+                    regtext = fqdn1
+
+                    tested = '<a href="' + regtext + '">Found Hidden Page</a>'
+
+                    guessedLinkSet.append(tested)
+                    guessedLinkTraverseSet.append(regtext)
+
+
 def scrapeCookies(url):
     cookieList = url.cookies
 
@@ -135,21 +164,6 @@ def scrapeParams(req):
     for param in params:
         if param and param not in urlParameterSet:
             urlParameterSet.append(param)
-
-
-def pageGuess(baseURL):
-
-    words = commonWordFile.split('\n')
-    suffixes = commonSuffixFile.split('\n')
-
-    for word in words:
-        for suffix in suffixes:
-            test = session.get(baseURL + word + "." + suffix)
-
-        if test.status_code != 404:
-            guessedLinkSet.append(test)
-
-    return guessedLinkSet
 
 
 def authenticate(site):

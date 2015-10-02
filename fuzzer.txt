@@ -21,3 +21,17 @@ Test against DVWA first. More clear for login. - Make sure to stay on the page, 
 README.txt file for all commands
 
 Guessing links needs work - pageGuess doesn't seem to do anything...
+
+
+regex
+
+re1='.*?'	# Non-greedy match on filler
+re2='((?:[a-z][a-z\\.\\d\\-]+)\\.(?:[a-z][a-z\\-]+))(?![\\w\\.])'	# Fully Qualified Domain Name 1
+re3='((?:[a-z][a-z]+))'	# Word 1
+
+rg = re.compile(re1+re2+re3,re.IGNORECASE|re.DOTALL)
+m = rg.search(txt)
+if m:
+    fqdn1=m.group(1)
+    word1=m.group(2)
+    print "("+fqdn1+")"+"("+word1+")"+"\n"

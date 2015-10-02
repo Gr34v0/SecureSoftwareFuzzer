@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c18a1176-0cc3-44ef-9353-9a82ae9af827" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Christian\Documents\GitHub\SecureSoftwareFuzzer\apache-tomcat-8.0.26\work\Catalina\localhost\manager\SESSIONS.ser" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apache-tomcat-8.0.26/work/Catalina/localhost/bodgeit/SESSIONS.ser" afterPath="$PROJECT_DIR$/apache-tomcat-8.0.26/work/Catalina/localhost/bodgeit/SESSIONS.ser" />
+      <change type="DELETED" beforePath="C:\Users\Christian\Documents\GitHub\SecureSoftwareFuzzer\README" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Christian\Documents\GitHub\SecureSoftwareFuzzer\apache-tomcat-8.0.26\work\Catalina\localhost\bodgeit\SESSIONS.ser" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apache-tomcat-8.0.26/logs/catalina.2015-09-30.log" afterPath="$PROJECT_DIR$/apache-tomcat-8.0.26/logs/catalina.2015-09-30.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuzzer.py" afterPath="$PROJECT_DIR$/fuzzer.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuzzer.txt" afterPath="$PROJECT_DIR$/fuzzer.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apache-tomcat-8.0.26/logs/localhost.2015-09-30.log" afterPath="$PROJECT_DIR$/apache-tomcat-8.0.26/logs/localhost.2015-09-30.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apache-tomcat-8.0.26/logs/localhost_access_log.2015-09-30.txt" afterPath="$PROJECT_DIR$/apache-tomcat-8.0.26/logs/localhost_access_log.2015-09-30.txt" />
     </list>
     <ignored path="SecureSoftwareFuzzer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,14 +30,14 @@
     <favorites_list name="SecureSoftwareFuzzer" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.4364525">
+    <splitter split-orientation="horizontal" split-proportion="0.5377095">
       <split-first>
         <leaf>
           <file leaf-file-name="fuzzer.py" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/fuzzer.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.39183223" vertical-offset="580" max-vertical-offset="3536">
-                  <caret line="55" column="28" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
+                <state vertical-scroll-proportion="1.8558952" vertical-offset="0" max-vertical-offset="3774">
+                  <caret line="100" column="19" selection-start-line="100" selection-start-column="19" selection-end-line="100" selection-end-column="19" />
                   <folding>
                     <element signature="e#0#15#0" expanded="true" />
                   </folding>
@@ -50,18 +52,8 @@
           <file leaf-file-name="fuzzer.txt" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/fuzzer.txt">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.4069641" vertical-offset="0" max-vertical-offset="919">
-                  <caret line="22" column="68" selection-start-line="22" selection-start-column="68" selection-end-line="22" selection-end-column="68" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="README" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/README">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.6124454" vertical-offset="0" max-vertical-offset="916">
+                  <caret line="33" column="5" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="42" />
                   <folding />
                 </state>
               </provider>
@@ -85,16 +77,17 @@
         <option value="$PROJECT_DIR$/commonwords" />
         <option value="$PROJECT_DIR$/commonsuffix" />
         <option value="$PROJECT_DIR$/testtest.py" />
-        <option value="$PROJECT_DIR$/fuzzer.py" />
         <option value="$PROJECT_DIR$/fuzzer.txt" />
+        <option value="$PROJECT_DIR$/fuzzer.py" />
+        <option value="$PROJECT_DIR$/README" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1672" />
+    <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="width" value="1696" />
+    <option name="height" value="1066" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -363,14 +356,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1672" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1696" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12916666" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14761905" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -423,14 +416,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fuzzer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2108" max-vertical-offset="3077">
@@ -445,14 +430,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="578">
           <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -485,14 +462,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="726">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/commonsuffix">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.12809473" vertical-offset="0" max-vertical-offset="929">
@@ -503,16 +472,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/commonwords">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.09149623" vertical-offset="0" max-vertical-offset="929">
-          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="929">
+          <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fuzzer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39183223" vertical-offset="580" max-vertical-offset="3536">
-          <caret line="55" column="28" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
+        <state vertical-scroll-proportion="1.8558952" vertical-offset="0" max-vertical-offset="3774">
+          <caret line="100" column="19" selection-start-line="100" selection-start-column="19" selection-end-line="100" selection-end-column="19" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
@@ -521,8 +490,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fuzzer.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4069641" vertical-offset="0" max-vertical-offset="919">
-          <caret line="22" column="68" selection-start-line="22" selection-start-column="68" selection-end-line="22" selection-end-column="68" />
+        <state vertical-scroll-proportion="0.6124454" vertical-offset="0" max-vertical-offset="916">
+          <caret line="33" column="5" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="42" />
           <folding />
         </state>
       </provider>

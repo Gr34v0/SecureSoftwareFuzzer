@@ -2692,3 +2692,8 @@
 127.0.0.1 - - [30/Sep/2015:03:08:06 -0400] "GET /bodgeit/advanced.jsp HTTP/1.1" 200 3262
 127.0.0.1 - - [30/Sep/2015:03:08:06 -0400] "GET /bodgeit/register.jsp HTTP/1.1" 200 2493
 127.0.0.1 - - [30/Sep/2015:03:08:06 -0400] "GET /bodgeit/score.jsp HTTP/1.1" 200 4133
+127.0.0.1 - - [30/Sep/2015:14:40:48 -0400] "GET /bodgeit HTTP/1.1" 302 -
+127.0.0.1 - - [30/Sep/2015:14:40:48 -0400] "GET /bodgeit/ HTTP/1.1" 200 3202
+127.0.0.1 - - [30/Sep/2015:14:40:48 -0400] "GET /bodgeit/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [30/Sep/2015:14:40:48 -0400] "GET /bodgeit/js/util.js HTTP/1.1" 304 -
+127.0.0.1 - - [30/Sep/2015:14:40:49 -0400] "GET /favicon.ico HTTP/1.1" 200 21630
