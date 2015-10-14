@@ -239,10 +239,13 @@ def sanitizedTest():
     pass
 
 def delayedResponse():
+    responseStart = time.time()
 
 
-    pass
-
+    responseEnd = time.time()
+    responseTime = responseEnd-responseStart
+    if responseTime > slowTime:
+        print('took ' + responseTime + 'to respond and may be vulnerable to denial of service')
 def httpCode(info):
 
     #Assuming info is a session web page, this will work.
