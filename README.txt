@@ -45,7 +45,8 @@ and you will get a list of all options and a description of each.
 
 Example of use:
 
-    python fuzzer.py custom-auth bodgeit -discover http://localhost:8080/bodgeit/
+    python fuzzer.py --custom-auth bodgeit -discover http://localhost:8080/bodgeit/
+    python fuzzer.py --custom-auth dvwa -discover http://127.0.0.1/dvwa/
 
 What this does is set the custom authentication to the BodgeIt presets and
 then discovers all links for the given url after logging in.

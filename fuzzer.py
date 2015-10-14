@@ -6,12 +6,12 @@ import re
 
 parser = argparse.ArgumentParser(description="Fuzzer for websites, specifically BodgeIt and DVWA")
 parser.add_argument("-discover", help="Output a comprehensive, human-readable list of all discovered inputs to the system. Techniques include both crawling and guessing.")
-#parser.add_argument("-test", help="Discover all inputs, then attempt a list of exploit vectors on those inputs. Report potential vulnerabilities.")
+parser.add_argument("-test", help="Discover all inputs, then attempt a list of exploit vectors on those inputs. Report potential vulnerabilities.")
 parser.add_argument("--custom-auth", help="Signal that the fuzzer should use hard-coded authentication for a specific application (e.g. dvwa).")
 parser.add_argument("--common-words", help="Newline-delimited file of common words to be used in page guessing and input guessing.")
-#parser.add_argument("--vectors-file", help="Newline-delimited file of common exploits to vulnerabilities.")
-#parser.add_argument("--sensitive-file", help="Newline-delimited file data that should never be leaked. It's assumed that this data is in the application's database (e.g. test data), but is not reported in any response.")
-#parser.add_argument("--random", help="When off, try each input to each page systematically.  When on, choose a random page, then a random input field and test all vectors. Default: false.")
+parser.add_argument("--vectors-file", help="Newline-delimited file of common exploits to vulnerabilities.")
+parser.add_argument("--sensitive-file", help="Newline-delimited file data that should never be leaked. It's assumed that this data is in the application's database (e.g. test data), but is not reported in any response.")
+parser.add_argument("--random", help="When off, try each input to each page systematically.  When on, choose a random page, then a random input field and test all vectors. Default: false.")
 parser.add_argument("--slow", help="Number of milliseconds considered when a response is considered 'slow'. Default is 500 milliseconds")
 
 args = parser.parse_args()
@@ -95,6 +95,10 @@ def linkTraverse(req, linkSet, baseURL):
     soup = BeautifulSoup(req.content)
 
     scrapeCookies(req)
+
+    for each in cookieBasket:
+        print(each)
+
     scrapeForm(soup)
     scrapeParams(req)
 
@@ -104,9 +108,26 @@ def linkTraverse(req, linkSet, baseURL):
 
     for linka in links:
         if linka not in linkSet:
-            linkSet.append(linka)
-            #print(baseURL.url + link.get('href'))
-            linkTraverse(session.get(baseURL + linka.get('href')), linkSet, baseURL)
+
+            re1='(http)'	# Word 1
+            re2='(:)'	# Any Single Character 1
+            re3='(\\/)'	# Any Single Character 2
+            re4='(\\/)'	# Any Single Character 3
+
+            rg = re.compile(re1+re2+re3+re4,re.IGNORECASE|re.DOTALL)
+
+            #print(linka)
+
+            m = rg.search(str(linka))
+            if m:
+
+                linkSet.append(linka.get('href'))
+
+            else:
+                linkSet.append(linka)
+                #print(baseURL + linka.get('href'))
+                if linka.get('href') is not None:
+                    linkTraverse(session.get(baseURL + linka.get('href')), linkSet, baseURL)
 
 
 def pageGuess(baseURL):
@@ -130,7 +151,7 @@ def pageGuess(baseURL):
                     fqdn1 = m.group(1)
                     regtext = fqdn1
 
-                    tested = '<a href="' + regtext + '">Found Hidden Page</a>'
+                    tested = '<a href="' + regtext + '">Found Potentially Hidden Page</a>'
 
                     guessedLinkSet.append(tested)
                     guessedLinkTraverseSet.append(regtext)
@@ -169,10 +190,9 @@ def scrapeParams(req):
 def authenticate(site):
 
     if site == "dvwa":
-        rootSite = requests.post("http://localhost:8080/dvwa", data={"username":"user@example.com", "password": "password"})
-        #print(BeautifulSoup(rootSite.content)).prettify()
+        rootSite = session.post("http://127.0.0.1/dvwa/login.php", data={"username":"admin", "password":"password", "Login":""})
+        #print(BeautifulSoup(rootSite.content).prettify())
         return rootSite
-        pass
     elif site == "bodgeit":
         rootSite = session.post("http://localhost:8080/bodgeit/login.jsp", data={"username":"test@thebodgeitstore.com", "password": "password"})
         #print(BeautifulSoup(rootSite.content).prettify())
@@ -193,18 +213,19 @@ if args.common_words:
 if args.custom_auth and args.discover:
     if args.custom_auth == "dvwa":
         site = authenticate("dvwa")
-        linkTraverse(site, linkSet, site.url)
+        #linkTraverse(site, linkSet, site.url)
     elif args.custom_auth == "bodgeit":
         site = authenticate("bodgeit")
-        linkTraverse(site, linkSet, site.url)
+        #linkTraverse(site, linkSet, site.url)
     else:
         authenticate("Not Recognized, or Default")
 
-if args.discover:
+if args.discover: #and not args.custom_auth:
     discover(args.discover)
 
 if args.test:
-    pageGuess(args.test)
+    print("testing")
+    #pageGuess(args.test)
 
 finalTime = time.time() - start
 
