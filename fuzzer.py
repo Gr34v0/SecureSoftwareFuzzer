@@ -234,9 +234,10 @@ def test(baseURL):
 
 
 def sanitizedTest():
-
-
-    pass
+    for form in formSet:
+        #Try using bleach package?
+        #if form != bleach.clean(form):
+        #  print(form.get('name') +  'is not sanitized.')
 
 def delayedResponse():
     responseStart = time.time()
