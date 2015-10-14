@@ -4,6 +4,10 @@ import argparse
 import time
 import re
 
+"""
+Script-wide setup
+"""
+
 parser = argparse.ArgumentParser(description="Fuzzer for websites, specifically BodgeIt and DVWA")
 parser.add_argument("-discover", help="Output a comprehensive, human-readable list of all discovered inputs to the system. Techniques include both crawling and guessing.")
 parser.add_argument("-test", help="Discover all inputs, then attempt a list of exploit vectors on those inputs. Report potential vulnerabilities.")
@@ -47,6 +51,11 @@ session = requests.Session()
 slowTime = 500 #ms
 
 start = time.time()
+
+
+"""
+Discovery Suite
+"""
 
 def discover(baseURL):
     print("------------<Input Discovery>-------------- \n")
@@ -201,8 +210,69 @@ def authenticate(site):
         print("Unrecognized or Defaulted")
 
 
+"""
+Testing Suite
+"""
+
+def test(baseURL):
+
+    #FOR TESTING PURPOSES ONLY AT THE MOMENT. NOT FOR PRODUCTION
+
+    print("------------<Input Testing>-------------- \n")
+    url = session.get(baseURL)
+    linkSet = [baseURL]
+
+    print("------------<Traversing Links...>------------ \n")
+    linkTraverse(url, linkSet, baseURL)
+    i = 0
+    for link in guessedLinkSet:
+        linkSet.append(link)
+        linkTraverse(session.get(baseURL + guessedLinkTraverseSet[i]), linkSet, baseURL)
+        i += 1
+
+    print("------------</Input Testing>------------")
+
+
+def sanitizedTest():
+
+
+    pass
+
+def delayedResponse():
+
+
+    pass
+
+def httpCode(info):
+
+    #Assuming info is a session web page, this will work.
+
+    code = info.status_code
+
+    if code < 200 or code > 200:
+        if code == 404:
+            print('404 Error: Page unavailable.')
+        elif code == 401:
+            print('401 Error: Unauthorized Access.')
+        elif code == 403:
+            print('403 Error: Forbidden access.')
+        elif code == 408:
+            print('408 Error: Request Timeout.')
+        elif code == 410:
+            print('410 Error: Page is gone; Forwarding address is unknown.')
+        elif code == 412:
+            print('412 Error: Precondition Failed')
+        else:
+            print('Error code does not match precoded values. \nInternet resources can be used'
+                  ' to find the meaning for Error Code ' + str(code) + '.')
+
+
+"""
+Commandline script functionality
+"""
+
 if not args.discover and not args.test:
-	print("Must have either discover or test")
+    print("Must have either discover or test")
 
 if args.slow:
     slowTime = int(args.slow)
@@ -210,22 +280,19 @@ if args.slow:
 if args.common_words:
     commonWordFile = open(args.common_words).read()
 
-if args.custom_auth and args.discover:
+if args.custom_auth:
     if args.custom_auth == "dvwa":
         site = authenticate("dvwa")
-        #linkTraverse(site, linkSet, site.url)
     elif args.custom_auth == "bodgeit":
         site = authenticate("bodgeit")
-        #linkTraverse(site, linkSet, site.url)
     else:
         authenticate("Not Recognized, or Default")
 
-if args.discover: #and not args.custom_auth:
+if args.discover:
     discover(args.discover)
 
 if args.test:
-    print("testing")
-    #pageGuess(args.test)
+    test(args.test)
 
 finalTime = time.time() - start
 
