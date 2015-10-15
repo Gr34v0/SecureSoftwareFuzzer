@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import argparse
 import time
 import re
+import bleach
 
 """
 Script-wide setup
@@ -217,7 +218,6 @@ Testing Suite
 def test(baseURL):
 
     #FOR TESTING PURPOSES ONLY AT THE MOMENT. NOT FOR PRODUCTION
-
     print("------------<Input Testing>-------------- \n")
     url = session.get(baseURL)
     linkSet = [baseURL]
@@ -230,20 +230,18 @@ def test(baseURL):
         linkTraverse(session.get(baseURL + guessedLinkTraverseSet[i]), linkSet, baseURL)
         i += 1
 
+
+
     print("------------</Input Testing>------------")
 
 
 def sanitizedTest():
     for form in formSet:
         #Try using bleach package?
-        #if form != bleach.clean(form):
-        #  print(form.get('name') +  'is not sanitized.')
+        if form != bleach.clean(form):
+          print(form.get('name') +  'is not sanitized.')
 
-def delayedResponse():
-    responseStart = time.time()
-
-
-    responseEnd = time.time()
+def delayedResponse(responseStart, responseEnd):
     responseTime = responseEnd-responseStart
     if responseTime > slowTime:
         print('took ' + responseTime + 'to respond and may be vulnerable to denial of service')
@@ -297,6 +295,16 @@ if args.discover:
 
 if args.test:
     test(args.test)
+
+if args.vectors:
+    start = time.time()
+    #test vector
+
+    end = time.time()
+    delayedResponse(start,end)
+
+if args.sensitive:
+    pass
 
 finalTime = time.time() - start
 
